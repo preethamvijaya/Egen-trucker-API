@@ -4,6 +4,7 @@ package IoT.org.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -15,11 +16,12 @@ import java.util.UUID;
 public class Reading {
 
     @Id
+    private Timestamp timestamp;
     private String vin;
 
     private double latitude;
     private double longitude;
-    private Timestamp timestamp;
+
     private float fuelVolume;
     private int speed;
     private int engineHp;
@@ -30,9 +32,11 @@ public class Reading {
 
 
     @OneToOne
+    @Transient
     private Tire tires;
 
     @OneToOne
+    @Transient
     private Alert alerts;
 
 
@@ -40,8 +44,8 @@ public class Reading {
         this.vin=UUID.randomUUID().toString();
     }
 
-    public Reading(String vin, double latitude, double longitude, Timestamp timestamp, float fuelVolume, int speed, int engineHp, boolean checkEngineLightOn, boolean engineCoolantLow, boolean cruiseControlOn, int engineRpm, Tire tires, Alert alerts) {
-        this.vin=UUID.randomUUID().toString();
+    public Reading(String vin, double latitude, double longitude, Timestamp timestamp, float fuelVolume, int speed, int engineHp, boolean checkEngineLightOn, boolean engineCoolantLow, boolean cruiseControlOn, int engineRpm) {
+        this.vin=vin;
         this.latitude = latitude;
         this.longitude = longitude;
         this.timestamp = timestamp;
@@ -52,8 +56,9 @@ public class Reading {
         this.engineCoolantLow = engineCoolantLow;
         this.cruiseControlOn = cruiseControlOn;
         this.engineRpm = engineRpm;
-        this.tires = tires;
-        this.alerts = alerts;
+//        this.alerts = alerts;
+//        this.tires = tires;
+
     }
 
     public String getVin() {
@@ -151,7 +156,6 @@ public class Reading {
     public void setTires(Tire tires) {
         this.tires = tires;
     }
-
     public Alert getAlerts() {
         return alerts;
     }
@@ -159,6 +163,7 @@ public class Reading {
     public void setAlerts(Alert alerts) {
         this.alerts = alerts;
     }
+
 
     @Override
     public String toString() {

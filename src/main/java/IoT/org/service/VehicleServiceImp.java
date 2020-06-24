@@ -4,7 +4,7 @@ package IoT.org.service;
 
 import IoT.org.exception.VehicleNotFoundException;
 import IoT.org.repository.VehicleRepository;
-import IoT.org.entity.Vehicle;
+import IoT.org.entity.VehicleInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -18,27 +18,27 @@ public class VehicleServiceImp implements VehicleService{
     private VehicleRepository repo;
 
     @Transactional
-    public List<Vehicle> findAll(){return (List<Vehicle>) repo.findAll();}
+    public List<VehicleInfo> findAll(){return (List<VehicleInfo>) repo.findAll();}
 
 
     @Transactional
-    public Vehicle findOne(String id) {
-        Optional<Vehicle> v = repo.findById(id);
+    public VehicleInfo findOne(String id) {
+        Optional<VehicleInfo> v = repo.findById(id);
         if(!v.isPresent())      {
-            throw new VehicleNotFoundException("Vehicle VIN= "+id+" is not found in database");
+            throw new VehicleNotFoundException("VehicleInfo VIN= "+id+" is not found in database");
         }
         return v.get();
 
     }
 
     @Transactional
-    public List<Vehicle> update(List<Vehicle> v) {
+    public List<VehicleInfo> update(List<VehicleInfo> v) {
 
         for (int i = 0; i <v.size() ; i++) {
             repo.save(v.get(i));
         }
         return v;
-//        return (List<Vehicle>) repo.save(v);
+//        return (List<VehicleInfo>) repo.save(v);
     }
 
 

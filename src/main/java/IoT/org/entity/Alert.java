@@ -57,6 +57,8 @@ public class Alert {
         this.vin = vin;
     }
 
+
+
     @Override
     public String toString() {
         return "Alert{" +

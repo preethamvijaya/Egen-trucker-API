@@ -10,7 +10,8 @@ public class Tire
 {
     @Id
     private String tireId;
-    private String vin;
+
+
 
     private int frontLeft;
     private int frontRight;
@@ -22,21 +23,21 @@ public class Tire
 
     }
 
-    public Tire(String tireId,int frontLeft, int frontRight, int rearLeft, int rearRight,String vin) {
+    public Tire(String tireId,int frontLeft, int frontRight, int rearLeft, int rearRight) {
         this.tireId=tireId;
         this.frontLeft = frontLeft;
         this.frontRight = frontRight;
         this.rearLeft = rearLeft;
         this.rearRight = rearRight;
-        this.vin=vin;
+
     }
 
     public String getTid() {
-        return vin;
+        return tireId;
     }
 
     public void setTid(String tid) {
-        this.vin = tid;
+        this.tireId = tireId;
     }
 
     public int getFrontLeft() {
@@ -70,6 +71,9 @@ public class Tire
     public void setRearRight(int rearRight) {
         this.rearRight = rearRight;
     }
+
+
+
 
     @Override
     public String toString() {

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-public class Vehicle {
+public class VehicleInfo {
 
     @Id
     private String vin;
@@ -19,11 +19,11 @@ public class Vehicle {
     private int maxFuelVolume;
     private Date lastServiceDate;
 
-    public Vehicle() {
+    public VehicleInfo() {
         this.vin=UUID.randomUUID().toString();
     }
 
-    public Vehicle(String make, String model, int year, int redlineRpm, int maxFuelVolume, Date lastServiceDate) {
+    public VehicleInfo(String make, String model, int year, int redlineRpm, int maxFuelVolume, Date lastServiceDate) {
 
         this.vin=UUID.randomUUID().toString();
         this.make = make;
@@ -92,7 +92,7 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
+        return "VehicleInfo{" +
                 "vin='" + vin + '\'' +
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +

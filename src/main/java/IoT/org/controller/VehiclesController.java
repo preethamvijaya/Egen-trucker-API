@@ -1,18 +1,13 @@
 package IoT.org.controller;
-
-
-import io.swagger.annotations.Api;
+import IoT.org.entity.VehicleInfo;
 import IoT.org.service.VehicleService;
-import IoT.org.entity.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/vehicles")
-@Api(description = "Employee related endpoints")
 
 public class VehiclesController {
 
@@ -20,13 +15,13 @@ public class VehiclesController {
     VehicleService vehicleService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Vehicle> findAll()
+    public List<VehicleInfo> findAll()
     {
         return vehicleService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/{id}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Vehicle findOne(@PathVariable("id") String id)
+    public VehicleInfo findOne(@PathVariable("id") String id)
     {
         return vehicleService.findOne(id);
     }
@@ -34,14 +29,14 @@ public class VehiclesController {
 
     @RequestMapping( value = "/{id}",method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Vehicle> update(@RequestBody List<Vehicle> vehicle)
+    public List<VehicleInfo> update(@RequestBody List<VehicleInfo> vehicle)
     {
         return  vehicleService.update(vehicle);
     }
 
 //    @RequestMapping( value = "/{id}",method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
 //            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//    public List<Vehicle> update(@RequestBody List<Vehicle> vehicle)
+//    public List<VehicleInfo> update(@RequestBody List<VehicleInfo> vehicle)
 //    {
 //        return  vehicleService.create(vehicle);
 //    }
