@@ -2,6 +2,7 @@ package IoT.org.service;
 
 import IoT.org.entity.Alert;
 import IoT.org.entity.Reading;
+import IoT.org.entity.VehicleInfo;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public interface ReadingService {
     Alert createAlert3(Reading reading);
     Alert createAlert4(Reading reading);
     List<Alert> getHighAlerts();
+    List<Alert> getVehicleAlerts(String vin);
+    List<Reading> findGeoLocation(String vin);
 
 
 

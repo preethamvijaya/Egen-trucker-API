@@ -132,14 +132,24 @@ public class ReadingServiceImp implements ReadingService {
     }
 
     @Transactional
-
     public List<Alert> getHighAlerts(){
         return alertrepo.getHighAlerts();
     }
 
 
+    @Transactional
+    public List<Alert> getVehicleAlerts(String id){
+        return alertrepo.getVehicleAlerts(id);
+    }
 
 
+    public List<Reading> findGeoLocation(String id) {
+        //Optional<List<VehicleInfo>> existing = repo.findGeoLocation(id);
+//        if (!existing.isPresent()){
+//            throw new ResourceNotFoundException("Vehicle with vin " + vin + " doesn't exist.");
+//        }
+        return readrepo.findGeoLocation(id);
+    }
 
 
 

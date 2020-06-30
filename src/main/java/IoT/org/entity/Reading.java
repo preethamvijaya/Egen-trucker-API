@@ -16,8 +16,9 @@ import java.util.UUID;
 public class Reading {
 
     @Id
-    private Timestamp timestamp;
     private String vin;
+    private Timestamp timestamp;
+
 
     private double latitude;
     private double longitude;

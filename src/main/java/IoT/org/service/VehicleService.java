@@ -12,4 +12,5 @@ public interface VehicleService {
     List<VehicleInfo> update(List<VehicleInfo> v);
 
 
+
 }
