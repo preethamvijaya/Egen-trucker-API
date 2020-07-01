@@ -7,7 +7,8 @@ import IoT.org.repository.VehicleRepository;
 import IoT.org.entity.VehicleInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,13 +16,13 @@ import java.util.Optional;
 public class VehicleServiceImp implements VehicleService{
 
     @Autowired
-    private VehicleRepository repo;
+    VehicleRepository repo;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<VehicleInfo> findAll(){return (List<VehicleInfo>) repo.findAll();}
 
 
-    @Transactional
+    @Transactional(readOnly = true)
     public VehicleInfo findOne(String id) {
         Optional<VehicleInfo> v = repo.findById(id);
         if(!v.isPresent())      {

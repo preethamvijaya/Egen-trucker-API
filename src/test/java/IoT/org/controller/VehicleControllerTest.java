@@ -1,6 +1,6 @@
 package IoT.org.controller;
 
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
@@ -61,7 +61,5 @@ public class VehicleControllerTest {
                         .isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.make", Matchers.is("Honda")));
     }
-    @Test
-    public void update() throws Exception {
-    }
+
 }
