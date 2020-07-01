@@ -20,6 +20,7 @@ public class ReadingsController {
     {
         return readingService.fetchReading(id);
     }
+
     @RequestMapping(method=RequestMethod.GET)
     public List<Reading> fetchAllReadings()
     {

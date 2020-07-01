@@ -22,9 +22,6 @@ public class AlertsController {
 
     @Autowired
     private ReadingService readingService;
-
-
-
     //Listing alerts which are HIGH
     @RequestMapping(method= RequestMethod.GET, value="/high")
     public String getHighAlerts()
@@ -37,14 +34,9 @@ public class AlertsController {
             alertResult = alertResult+"<br>Alert  id: " + alt.getAlertId() + ", Message: "
                     + alt.getMessage()+" and Vehicle id " + alt.getVin();
         }
-
-
         return alertResult;
 
-
-        //return  readingService.getHighAlerts();
     }
-
 
     //Listing specific vehicle all alerts
     @RequestMapping(method= RequestMethod.GET, value="/{vin}")

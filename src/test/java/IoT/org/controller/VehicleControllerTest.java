@@ -1,7 +1,6 @@
 package IoT.org.controller;
 
-import IoT.org.entity.Alert;
-import IoT.org.repository.AlertRepository;
+
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
@@ -16,51 +15,53 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-
+import IoT.org.entity.VehicleInfo;
+import IoT.org.repository.VehicleRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(
-        webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @ActiveProfiles("integrationtest")
-public class AlertsControllerTest {
-
+public class VehicleControllerTest {
     @Autowired
     private MockMvc mvc;
 
     @Autowired
-    private AlertRepository alertRepository;
+    private VehicleRepository vehicleRepository;
 
 
     @Before
     public void setup() {
-        Alert alert = new Alert();
-        alert.setAlertId("alert-id");
-        alert.setMessage("Engine Failure");
-        alert.setPriority("HIGH");
-        alert.setVin("Alert-Vin");
-        alertRepository.save(alert);
+        VehicleInfo vehicle = new VehicleInfo();
+        vehicle.setVin("Vehicle-Vin");
+        vehicle.setMake("Honda");
+        vehicle.setModel("Civic");
+        vehicleRepository.save(vehicle);
     }
 
     @After
     public void cleanup() {
-        alertRepository.deleteAll();
+        vehicleRepository.deleteAll();
     }
 
     @Test
-    public void getAllAlerts() throws Exception{
-        mvc.perform(MockMvcRequestBuilders.get("/alerts/high"))
+    public void getAllVehicle() throws Exception{
+        mvc.perform(MockMvcRequestBuilders.get("/vehicles"))
                 .andExpect(MockMvcResultMatchers.status()
                         .isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.containsString("All HIGH Alerts")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].vin", Matchers.is("Vehicle-Vin")));
     }
+
 
     @Test
-    public void findOneAlert() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/alerts/Alert-Vin"))
+    public void findOne() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/vehicles/Vehicle-Vin"))
                 .andExpect(MockMvcResultMatchers.status()
                         .isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].message", Matchers.is("Engine Failure")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.make", Matchers.is("Honda")));
     }
-
+    @Test
+    public void update() throws Exception {
+    }
 }
